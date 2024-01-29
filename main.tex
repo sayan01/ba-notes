@@ -34,6 +34,11 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{dirtytalk}
+\usepackage[autostyle=true]{csquotes}
+
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{environ}
+\usepackage{lipsum}
 
 % Bibliography
 \usepackage[style=alphabetic,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
@@ -41,6 +46,33 @@
 \defbibheading{bibempty}{}
 
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+\SetMainLanguage{english} % or your main language
+
+
+\newtheorem{question}{Question}
+\mdfdefinestyle{que}{
+  linecolor=cyan,
+  backgroundcolor=cyan!20,
+}
+\surroundwithmdframed[style=que]{question}
+
+\newtheorem{answer}{Answer}
+\mdfdefinestyle{ans}{
+  linecolor=cyan,
+  backgroundcolor=yellow!20
+}
+\surroundwithmdframed[style=ans]{answer}
+
+\NewEnviron{rotanswer}{%
+  \begin{tikzpicture}
+  \node[rotate=180,inner sep=0pt] {\parbox{\linewidth}{%
+  \begin{answer}
+  \BODY
+  \end{answer}}};
+\end{tikzpicture}%
+}
+
 
 %----------------------------------------------------------------------------------------
 %	Definitions of new commands
@@ -571,127 +603,275 @@ A few best practices for designing visualizations are:
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[width=0.8\linewidth]{Pictures/dashboard.png}
+  \includegraphics[width=0.7\linewidth]{Pictures/dashboard.png}
   \caption{Example Dashboard}
   \label{fig:dashboard}
 \end{figure}
 
 
+\subsection{Why Dashboards?}
+
+Dashboards connect all kinds of different metrics, data sources, APIs, and
+services to help companies extract relevant information from those sources and
+display it in user-friendly ways.
+Like a car’s dashboard, data dashboards organize and display important
+information at a glance to help you understand your company’s most valuable
+data and unearth answers to crucial questions.
+By connecting dashboards to specific metrics or key performance indicators
+(KPIs), you gain vital business intelligence and the ability to dive deep into
+specific pieces of information to continually monitor success.
+
+\subsection{Tools}
+
+Dashboard can be designed using multiple applications. Some of them are:
+
+\begin{itemize}
+  \item \textbf{Microsoft Excel} or \textbf{Google Sheets}
+  \item \textbf{Microsoft Power BI}
+  \item \textbf{Tableau}
+  \item \textbf{Google Data Studio}
+\end{itemize}
+Enterprise dashboards are usually designed using Microsoft Power BI or Tableau.
+But simple dashboards can be designed using Microsoft Excel or Google Sheets.
+
+\newpage
+
+\section{Exercises}
+
+\begin{question}
+When do you choose “charts” for representing data?
+  \begin{enumerate}[label=(\alph*)]
+    \item To show how data changes over time
+    \item Show distribution of data
+    \item Show complete data
+    \item Show slice of data
+\end{enumerate}
+\end{question}
+
+\begin{rotanswer}
+  (a), (b), (d)
+\end{rotanswer}
+
+\begin{question}
+  When do you \textbf{not} choose a table to represent data?
+  \begin{enumerate}[label=(\alph*)]
+    \item Display complete data
+    \item Highlight specific item in context of complete data
+    \item Show patterns in data
+    \item None of the above
+\end{enumerate}
+\end{question}
+
+\begin{rotanswer}
+  (c)
+\end{rotanswer}
+
+\begin{question}
+ Select which of the following are categorical data?
+  \begin{enumerate}[label=(\alph*)]
+    \item Your highest level of education
+    \item Customer rating for service experience e.g. Poor, Average, Good.
+    \item Your age bucket e.g. below 18 year, between 19 and 30 years etc.
+    \item Time
+    \item Pressure
+\end{enumerate}
+\end{question}
+
+\begin{rotanswer}
+  (a), (b), (c)
+\end{rotanswer}
+
+\begin{question}
+Q4. Select which of the following are discrete data?
+  \begin{enumerate}[label=(\alph*)]
+    \item How many siblings do you have?
+    \item Weight
+    \item Number of houses in your locality
+    \item Defects per hour
+    \item Pressure
+\end{enumerate}
+\end{question}
+
+\begin{rotanswer}
+  (a), (c), (d)
+\end{rotanswer}
+
+\begin{question}
+Q5. Select which of the following are continuous data?
+  \begin{enumerate}[label=(\alph*)]
+    \item Time between two successive failures of an equipment
+    \item Volume
+    \item Gender
+    \item Your favourite cuisines
+    \item Density
+\end{enumerate}
+\end{question}
+
+\begin{rotanswer}
+  (a), (b), (e)
+\end{rotanswer}
+
+\begin{question}
+  Q6. Which chart is used for what type of data?
+  \begin{multicols}{2}
+    \begin{enumerate}[label=(\alph*)]
+      \item Box Plot
+      \item Line Chart
+      \item Bar Chart
+      \item Column / Stacked Column Chart
+      \item Histogram
+      \item Scatter Plot
+      \item Pie Chart
+    \end{enumerate}
+    \columnbreak
+    \begin{enumerate}[label=(\roman*)]
+      \item One item proportional to totals
+      \item Multiple items components
+      \item Comparison between items
+      \item Trend over time
+      \item Frequency of items
+      \item Outlier identification
+      \item Correlation representation
+    \end{enumerate}
+  \end{multicols}
+\end{question}
+
+\begin{rotanswer}
+  The matching is as follows:
+  \begin{enumerate}[label=(\alph*)]
+    \item (vi)
+    \item (iv)
+    \item (iii)
+    \item (ii)
+    \item (v)
+    \item (vii)
+    \item (i)
+  \end{enumerate}
+\end{rotanswer}
+
+
 \newpage
 
 \begin{remark}
-$f$ is convex $\Rightarrow$ $-f$ is concave.
+Table-1 below provides the country wise sales of items A, B, C, D, and E.
+Then for the messages in questions 7, 8, and 9, choose the
+appropriate best representation from the given options
 \end{remark}
-Level set: $S_{\alpha}f = \{ x | f(x) \le \alpha \}$.\\
-$S_{\alpha}f$ is convex $\Leftrightarrow$ $f$ is convex. \\
-\begin{definition}[Strongly convex]
-$f : C \rightarrow \R$ is strongly convex with modules $\mu$ if $\forall x, y \in C$, $\forall \alpha \in (0,1)$, $f(ax + (1-a)x) \le af(x) + (1-a)f(x) - \frac{1}{2\mu}\alpha(1- \alpha) \|x-y\|^2$.
-\end{definition}
 
-\begin{remark}
-\begin{itemize}
-\item $f$ is 2nd-differentiable, $f$ ix \cvx $\iff$ $\nabla^2f(x) \rangle  0$.
-\item $f$ is strongly \cvx $\iff$ $\nabla^2f(x) \rangle  \mu I$ $\iff$ $x \ge \mu$
-\end{itemize}
-\end{remark}
-\begin{definition}[2]
-$f : \R^n \to \bar{\R} $ is \cvx  if $x, y  \in \R , \alpha \in (0,1), f(ax + (1-a)x) \le af(x) + (1-a)f(x)$.
-\end{definition}
-The effective domain of $f$ is $dom f = \{x | f(x) \langle + \infty \}$
-\begin{example}[ludcator function]
-$\delta_c(x) = \begin{cases}
-0 \quad  x \in C \\
-+ \infty \quad elsewhere
-\end{cases}$.\\
-$dom \space \delta_c(x) = C$
-\end{example}
-\begin{definition}[Epigraph]
-The epigraph of f is $epi \space f = \{(x,\alpha) | f(x) \le \alpha\}$
-\end{definition}
-The graph of $epi \space f$ is $\{ (x,f(x) | x \in dom \space f\}$.
-\begin{definition}[III]
-A function $f : \R^n \to \bar{\R}$ is %\cvx  if $\epi \space f $ is \cvx
-\end{definition}
-\begin{theorem}
-$f : \R^n \to \bar{\R}$ is \cvx  $\iff$ $\forall x,y \in \R^n, \alpha \in (0,1), f(ax + (1-a)x) \le af(x) + (1-a)f(x)$.
-\end{theorem}
-\begin{proof}
-$\Rightarrow$ take $x,y \in dom \space f$, $(x,f(x)) \in epi \space f$,$(y,f(y)) \in epi \space f$.
-\end{proof}
+\begin{figure}[hitb!]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Pictures/PA1b.png}
+  \caption{PA 1 Table}
+  \label{fig:pa1-table}
+\end{figure}
 
-\begin{example}[Distance]
-Distance to a \cvx  set $d_c(x) = \inf \{ \| z-x \| | z \in C \}$. Take any two sequence $\{ y_k\} and \{ \bar{y}_k\} \subset C$ s.t. $\| y_k - x\| \to d_c(x)$, $\| \bar{y}_k - \bar{x}\| \to d_c(\bar{x})$. $z_k = \alpha y_k + (1 - \alpha) \bar{y}_k$.
-\begin{align*}
-d_c(\alpha x + (1-\alpha) \bar{x}) &\le \| z_k - \alpha x - (1 - \alpha) \bar{x}\| \\
-& = \| \alpha(y_k - x) + (1 - \alpha)(\bar{y}_k - \bar{x})\| \\
-& \le \alpha \| y_k - x\| + (1 - \alpha ) \|\bar{y}_k - \bar{x}\|
-\end{align*}
-Take $k \to \infty$, $d_c(\alpha x + (1 - \alpha) \bar{x}) \le \alpha d(x) + (1 - \alpha) d(\bar{x})$
-\end{example}
-\begin{example}[Eigenvalues]
-Let $X \in S^n := \{ n \times n symmetric matrix\}$. $\lambda_1(x) \ge \lambda_2(X) \ge \ldots \ge \lambda_n(x)$.\\
-$f_k(x) = \sum_{1}^n \lambda_i(x)$.\\
-Equivalent characterization
+\begin{question}
+Message to convey: “Country with the highest sales for each item”
+\end{question}
+\begin{figure}[hitb!]
+  \centering
+  \begin{subfigure}[c]{0.75\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/op1.png}
+    \caption{Option 1}
+    \label{fig:pa1-op1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.35\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/op2.png}
+    \caption{Option 2}
+    \label{fig:pa1-op2}
+  \end{subfigure}
+  \begin{subfigure}[c]{0.35\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/op3.png}
+    \caption{Option 3}
+    \label{fig:pa1-op3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.35\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/op4.png}
+    \caption{Option 4}
+    \label{fig:pa1-op4}
+  \end{subfigure}
+  \caption{Options for Q7}
+  \label{fig:pa1-op}
+\end{figure}
 
-\begin{align*}
-f_k(x) & = \max\{ \sum_{i} v_i^T Xv_i | v_i \perp v_j , i \neq j\} \\
-& =  \max\{ tr( V^TXV | V^T V = I_k \} \\
-\max \{tr(VV^TX) \} \text{by circularity}
-\end{align*}
-Note $\langle A,B\rangle  = tr(A,B)$ is true for symmetric matrix. \\
-$\langle A,A\rangle  = |A |_F^2 = \sum_{i} A_{ii}^2$
-\end{example}
+\begin{rotanswer}
+  (d)
+\end{rotanswer}
 
-\section{Support Function}
-Take a set $C \in \R^n$, not necessarily convex.The support function is $\sigma_C = \R^n \to \bar{\R}$. $\sigma_C(x) = \sum \{ \langle x,u\rangle  | u \in C\}$.
-\includegraphics[scale=0.5]{1_1.png}
-\begin{fact}
-The support function binds the supporting hyper-plane.
-\end{fact}
+\begin{question}
+Message to convey: “Country with the highest sales across all items”
+\end{question}
 
-Supporting functions are
-\begin{itemize}
-\item Positively homogeneous\\
-$\sigma_C(\alpha x) = \alpha \sigma_C(x) \forall \alpha \rangle  0$ \\
-$\sigma_C(\alpha x ) = \sup_{u \in C} \langle \alpha x, u\rangle  = \alpha \sup_{u \in C} \langle x, u\rangle  = \alpha \sigma_C(x)$
-\item Sub-linear( a special case of convex, linear combination holds $\forall \alpha$.\\
-$\sigma_C(\alpha x + (1 - \alpha) y ) = \sup_{u \in C} \langle \alpha x + (1 - \alpha) y,u\rangle  \le \alpha\sup_{u \in C}\langle x,u\rangle  + (1 - \alpha)\sup_{u \in C}\langle y,u\rangle  $
-\end{itemize}
-\begin{example}[L2-norm]
-$\| x \| = \sup_{u \in C} \{ \langle x, u \rangle, u \in \R^n \}$.\\
-$\|x \|_p = \sup \{ \langle x, u \rangle, u \in B_q \}$ where $\frac{1}{p} + \frac{1}{q} = 1$. $B_q = \{ \|x \|_q \le 1\}$.\\
-The norm is
-\begin{itemize}
-\item Positive homogeneous
-\item sub-linear
-\item If $0 \in C$, $\sigma_C$ is non-negative.
-\item If $C$ is central-symmetric, $\sigma_C(0) = 0$ and $\sigma_C(x) = \sigma_C(-x)$
-\end{itemize}
-\end{example}
+\begin{figure}[hitb!]
+  \centering
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq8-1.png}
+    \caption{Option 1}
+    \label{fig:pa1.8-op1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq8-2.png}
+    \caption{Option 2}
+    \label{fig:pa1.8-op2}
+  \end{subfigure}
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq8-3.png}
+    \caption{Option 3}
+    \label{fig:pa1.8-op3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq8-4.png}
+    \caption{Option 4}
+    \label{fig:pa1.8-op4}
+  \end{subfigure}
+  \caption{Options for Q8}
+  \label{fig:pa1.8-op}
+\end{figure}
 
-\begin{fact}[Epigraph of a support function]
-$epi \space \sigma_C = \{ (x,t) | \sigma_C(x) \le t\}$.
-Suppose $(x,t) \in epi \space \sigma_C$. Take any  $\alpha > 0$. $\alpha(x,t) = (\alpha x, \alpha t)$.\\
-$\alpha \sigma_C(x) = \alpha \sigma_C(x) \le \alpha t$. $\alpha(x,c) \in epi
-\sigma_C$\\
-\includegraphics[]{1_2}
-\end{fact}
+\begin{rotanswer}
+  (a)
+\end{rotanswer}
 
-\section{Operations Preserve Convexity of Functions}
-\begin{itemize}
-\item Positive affine transformation \\
-$f_1,f_2,\ldots,f_k \in \space cvx \R^n$.\\
-$f = \alpha_1 f_1 + \alpha_2 f_2 + \ldots + \alpha_k f_k$
-\item Supremum of functions. Let $\{ f_i \}_{i \in I}$ be arbitrary family of functions. If $\exists x \sup_{j \in J} f_j(x) < \infty \Leftrightarrow f(x) = \sup_{j \in J} f_j(x) $\\
-\includegraphics[]{1_3}
-\item Composition with linear map.\\
-$f \in cvx \R^n$, $A:\R^n \to \R^m$ is a linear map.
-$f \circ A (x) = f(Ax) \in cvx \R^n$\\
-\begin{align*}
-f \circ A (x) & = f(A(\alpha x + (1-\alpha) y)) \\
-& = f(A \alpha x + (1-\alpha) A y) \\
-& \le \alpha f(Ax) + (a - \alpha) f(Ay)
-\end{align*}
-\end{itemize}
+\newpage
+
+\begin{question}
+Message to convey: “Across all items, the country wise proportion of item-A being sold”
+\end{question}
+
+\begin{figure}[hitb!]
+  \centering
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq9-1.png}
+    \caption{Option 1}
+    \label{fig:pa1.9-op1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq9-2.png}
+    \caption{Option 2}
+    \label{fig:pa1.9-op2}
+  \end{subfigure}
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq9-3.png}
+    \caption{Option 3}
+    \label{fig:pa1.9-op3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{Pictures/paq9-4.png}
+    \caption{Option 4}
+    \label{fig:pa1.9-op4}
+  \end{subfigure}
+  \caption{Options for Q9}
+  \label{fig:pa1.9-op}
+\end{figure}
+
+\begin{rotanswer}
+  (a), (b), (d)
+\end{rotanswer}
 
 \end{document}

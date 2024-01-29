@@ -14,6 +14,7 @@
 \contentsline {subsection}{\numberline {1.3.2}Appropriate Chart Type for Different types of Messages}{11}{subsection.1.3.2}%
 \contentsline {subsection}{\numberline {1.3.3}Designing the Visualization}{11}{subsection.1.3.3}%
 \contentsline {section}{\numberline {1.4}Visualizing Data in Dashboards}{13}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Support Function}{15}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Operations Preserve Convexity of Functions}{16}{section.1.6}%
+\contentsline {subsection}{\numberline {1.4.1}Why Dashboards?}{13}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Tools}{13}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Exercises}{14}{section.1.5}%
 \contentsfinish 
