@@ -1,0 +1,697 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  My documentation report
+%  Objetive: Explain what I did and how, so someone can continue with the investigation
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
+\usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,letterpaper]{geometry} % Page margins
+
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{ocre}{RGB}{52,177,201} % Define the orange color used for highlighting throughout the book
+
+% Font Settings
+\usepackage{avant} % Use the Avantgarde font for headings
+%\usepackage{times} % Use the Times font for headings
+\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{amsthm}
+
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{dirtytalk}
+
+% Bibliography
+\usepackage[style=alphabetic,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
+\addbibresource{bibliography.bib} % BibTeX bibliography file
+\defbibheading{bibempty}{}
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+%----------------------------------------------------------------------------------------
+%	Definitions of new commands
+%----------------------------------------------------------------------------------------
+
+\def\R{\mathbb{R}}
+\newcommand{\cvx}{convex}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\AddToShipoutPicture*{\put(0,0){\includegraphics[scale=1.25]{esahubble}}} % Image background
+\centering
+\vspace*{5cm}
+\par\normalfont\fontsize{35}{35}\sffamily\selectfont
+\textbf{Business Analytics Notes}\\
+{\LARGE BSMS2002 Lecture Notes for Weeks 1 to 12}\par % Book title
+\vspace*{1cm}
+{\Huge Sayan Ghosh}\par % Author name
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+%\noindent Copyright \copyright\ 2014 Andrea Hidalgo\\ % Copyright notice
+
+\noindent \textsc{Business Analytics (BSMS2002) Lecture Notes}\\
+
+\noindent \textsc{\url{https://github.com/sayan01/ba-notes}}\\ % URL
+
+\noindent This document contains my personal lecture notes
+of the Business Analytics (BSMS2002) course taught by
+\textbf{
+\href{https://doms.iitm.ac.in/index.php/rrm}{Prof. Rahul Marathe R.}
+}
+at
+\textbf{
+\href{https://study.iitm.ac.in/ds/}{IIT Madras BS Program}.
+}
+This is not an official document.\\ % License information
+
+\noindent \textit{First release, January 2024} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\chapterimage{head1.png} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 1
+%----------------------------------------------------------------------------------------
+
+\chapterimage{head2.png} % Chapter heading image
+\chapter{Week 1: Why Visualize Data?}
+\section{Introduction to Data Visualization}
+Good data visualization is the key to communicate information clearly and efficiently to users. It is a key step to understand data and make better business decisions.\\
+\subsection{Types of Data}
+There are broadly two types of data:
+\begin{itemize}
+\item \textbf{Qualitative or Categorical Data:} Qualitative data is descriptive information \\
+\textbf{Examples:} Colors, textures, smells, tastes, appearance, beauty, etc.
+\item \textbf{Quantitative or Numeric Data:} Quantitative data is numerical information (numbers)\\
+\textbf{Examples:} Counts, height, weight, area, volume, ratings, etc.
+\end{itemize}
+\subsection{Categorical Data}
+\begin{definition}[Categorical Data]
+Categorical data is a type of data that is used to group information with similar characteristics.
+\end{definition}
+Categorical data are labels and the values can belong to only
+a specific set of categories.\\
+
+They can be further divided into two types:
+\begin{itemize}
+\item \textbf{Nominal Data:} Nominal data is a type of data that is used to label variables without providing any quantitative value or ordering.\\
+\item \textbf{Ordinal Data:} Ordinal data is a type of data that is used to label variables, but the order of the values matters.\\
+\end{itemize}
+
+\newpage
+
+\subsection{Numeric Data}
+\begin{definition}[Numeric Data Data]
+Quantitative or Numeric data is a type of data that is used to measure things.
+\end{definition}
+It can either be
+\textbf{discrete} or \textbf{continuous}.
+
+\begin{definition}[Discrete Data]
+Discrete data is a type of data that can only take certain values.\\
+\end{definition}
+
+\begin{definition}[Continuous Data]
+Continuous data is a type of data that can take any value.\\
+\end{definition}
+
+\begin{example}
+  The height of a person is a continuous numeric variable.
+\end{example}
+\begin{example}
+  The number of students in a class is a discrete numeric variable.
+\end{example}
+\begin{example}
+  The gender of a person is a categorical variable.
+\end{example}
+
+
+\subsubsection{Benefits of Visualizing Data}
+\begin{itemize}
+    \item \textbf{Communicate complex information:}
+      Visualizations help people understand data quickly
+      and convey a lot of information concisely and powerfully.
+    \item \textbf{A Picture is worth a thousand words:}
+      Create a “picture” for reasoning about and analyzing
+      quantitative and conceptual information.
+      \begin{itemize}
+        \item Makes cognitive processing easier
+        \item Provides “content/information rich” view at a glance
+        \item Directs attention toward the content rather than methodology
+      \end{itemize}
+    \item \textbf{Focus on the important:}
+      % Convey a message about the significance of the data
+      Visualizations help you focus on the important parts of the data
+      and give you a clear idea of what the data is trying to tell you.
+      It lets us identify which factors are more significant than others.
+\end{itemize}
+
+\subsubsection{Attributes of Visual Perception}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \textbf{Form:}
+    \begin{itemize}
+      \item Length
+      \item Width
+      \item Orientation
+      \item Size
+      \item Shape
+      \item Curvature
+      \item Enclosure
+      \item Spatial grouping
+      \item Blur
+    \end{itemize}
+  \item \textbf{Color:}
+    \begin{itemize}
+      \item Hue
+      \item Saturation
+      \item Brightness
+    \end{itemize}
+  \item \textbf{Position:}
+    \begin{itemize}
+      \item 1D: Position along a common scale
+      \item 2D: Position in a plane
+      \item 3D: Position in space
+      \item Direction of motion
+    \end{itemize}
+\end{itemize}
+\end{multicols}
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/visual-perception-form1.png}
+        \label{fig:form1}
+    \end{subfigure}
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/visual-perception-form2.png}
+        \label{fig:form2}
+    \end{subfigure}
+    \caption{Visual Perception: Form}
+    \label{fig:visual-perception-form}
+\end{figure}
+
+
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/visual-perception-color.png}
+        \caption{Visual Perception: Color}
+        \label{fig:color}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/visual-perception-spatial.png}
+        \caption{Visual Perception: Spatial}
+        \label{fig:spatial}
+    \end{subfigure}
+    \caption{Visual Perception: Color and Spatial}
+    \label{fig:visual-perception-color-spatial}
+\end{figure}
+
+
+
+\begin{theorem}[Umbrella Principle]
+  There are four principles of data visualization:
+  \begin{itemize}
+    \item \textbf{Know Purpose}: You need to have a purpose
+      statement for every visualization you create. A purpose
+      is not necessarily a message.
+    \item \textbf{Ensure Integrity}: You need to ensure that
+      your visualization is accurate and honest. Not just the
+      data, but also the visualization itself. The presentation
+      should not distort the truth or mislead the audience.
+    \item \textbf{Maximize Data Ink; Minimize Non-Data Ink}:
+      Make sure unnecessary elements are removed from the
+      visualization. The goal is to maximize the data-ink ratio.
+    \item \textbf{Show Your Data; Annotate}:
+      You need to show your data. You should also annotate
+      your visualization to help the audience understand it.
+  \end{itemize}
+\end{theorem}
+
+\begin{example}
+  \textbf{Know Purpose:}
+  \say{My purpose in creating this graph
+  to help the audience see that only a small
+  percentage the patient base are candidates
+  for this specific therapeutic regimen.}
+\end{example}
+
+\begin{example}
+  \textbf{Ensure Integrity:}
+  Truncating the y-axis is a common way to
+  mislead the audience. The truncated graph
+  makes the difference between the two
+  groups look much larger than it actually is.
+  \begin{figure}[hibt!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Pictures/integrity-baseline.png}
+    \caption{Baseline Tampering}
+    \label{fig:bias-baseline}
+  \end{figure}
+\end{example}
+
+\begin{example}
+  \textbf{Maximize Data Ink; Minimize Non-Data Ink:}
+  The graph should only have lines and labels that are
+  necessary to understand the data. The graph should
+  not have any unnecessary elements like grid lines,
+  unnecessary labels, etc.
+
+
+  \begin{figure}[hitb!]
+    \centering
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/max-data1.png}
+        \caption{Cluttered}
+        \label{fig:max-data-cluttered}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/max-data2.png}
+        \caption{Clean}
+        \label{fig:max-data-clean}
+    \end{subfigure}
+    \caption{Maximize Data Ink; Minimize Non-Data Ink}
+    \label{fig:max-data}
+  \end{figure}
+
+\end{example}
+
+\newpage
+
+\begin{example}
+  \textbf{Show Your Data; Annotate:}
+  You should always show your data. You should also annotate
+  your visualization to help the audience understand it.
+
+  \begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/annotate1.png}
+        \caption{No Annotations}
+        \label{fig:annotate1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/annotate2.png}
+        \caption{Annotations}
+        \label{fig:annotate2}
+    \end{subfigure}
+  \end{figure}
+\end{example}
+
+\section{Defining the Message}
+
+\begin{definition}[Message]
+  The message is the main point that you want to convey to the audience
+  through your visualization.
+\end{definition}
+
+\subsection{The Three Steps of Data Visualization}
+
+\begin{enumerate}
+  \item \textbf{Defining the Message:}
+    The first step is to define the message that you want to convey to the audience.
+  \item \textbf{Choosing the Right Chart Type:}
+    The second step is to choose the right chart type to convey the message.
+    \say{Should I use a bar chart or a line chart? or maybe a pie chart?}
+  \item \textbf{Designing the Visualization:}
+    The third step is to design the visualization.
+    \say{What colors should I use? Should I use a 3D chart or a 2D chart?}
+    This step should ensure quick cognitive processing of the visualization.
+\end{enumerate}
+
+\subsection{One Data, Many Messages}
+
+A single data set can have many messages.
+The message that you want to convey
+depends on the audience and the context.\\
+
+\begin{example} AIDS Data\\
+
+  You have been given the data of AIDS patients in the US.
+  You can use this data to convey many messages:
+
+  \begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Age Group} & \textbf{Number of AIDS Cases} \\
+    \hline
+    Under 5 & 6,975 \\
+    5-12 & 2,099 \\
+    13-19 & 4,428 \\
+    20-24 & 28,665 \\
+    25-29 & 105,060 \\
+    30-34 & 179,164 \\
+    35-39 & 182,857 \\
+    40-44 & 136,145 \\
+    45-49 & 80,242 \\
+    50-54 & 42,780 \\
+    55-59 & 23,280 \\
+    60-64 & 12,898 \\
+    Over 65 & 11,555 \\
+    \hline
+    \textbf{Total} & \textbf{816,148} \\
+    \hline
+  \end{tabular}
+  \captionof{table}{AIDS Data}
+  \label{tab:aids-data}
+  \end{center}
+
+
+  \begin{itemize}
+    \item \textbf{Message 1:} The age range of 25-44 has the highest
+  number of AIDS patients.
+    \item \textbf{Message 2:} Even kids below the age of 5 have AIDS.
+  \end{itemize}
+
+
+\section{Choosing the Right Chart Type}
+
+There are many chart types available to visualize data.
+Choosing the right chart type is very important.
+The chart type should be able to convey the message
+that you want to convey to the audience.\\
+
+\begin{example}
+  For the above AIDS data
+  \pageref{tab:aids-data},
+  to show the distribution of data
+  among the age groups,
+  you can use a pie chart or a bar chart.
+  However, a line chart would not be a good choice.
+
+  \textbf{Pie Chart}: Use this if number of categories is small (less than 5).
+
+  \textbf{Bar Chart}: Use this if number of categories is large (more than 5).
+
+  \begin{figure}[hibt!]
+    \centering
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/aids-line.png}
+        \caption{Line Chart}
+        \label{fig:aids-line}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Pictures/aids-histogram.png}
+        \caption{Histogram}
+        \label{fig:aids-histogram}
+    \end{subfigure}
+    \caption{Distribution data: Histogram is a better choice
+    if discrete groups}
+    \label{fig:aids-distribution}
+  \end{figure}
+\end{example}
+
+\begin{example}
+  \textbf{Seasonality in Sales Data}: Use a line chart to show
+  seasonality in sales data or other time series data.
+
+  \begin{figure}[hitb!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Pictures/seasonality.png}
+    \caption{Seasonality in Sales Data}
+    \label{fig:seasonality}
+  \end{figure}
+\end{example}
+
+\subsection{Chart or Table?}
+
+Sometimes a table is better than a chart.
+If the data is small and the audience needs to see the exact values,
+then a table is better than a chart.
+
+This is also the case if there is no pattern in the data to be shown.
+
+\subsection{Appropriate Chart Type for Different types of Messages}
+
+We can also use a simple heuristic to choose the right chart type
+based on the message that we want to convey.
+
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Message} & \textbf{Chart Type} & \textbf{Example} \\
+    \hline
+    \textbf{Item Comparison} & Bar Chart
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-bar.png} \\
+    \hline
+    \textbf{Components of one item} & Pie Chart
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-pie.png} \\
+    \hline
+    \textbf{Components of multiple item} & Stacked Bar Chart
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-stacked-bar.png} \\
+    \hline
+    \textbf{Distribution} & Histogram
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-histogram.png} \\
+    \hline
+    \textbf{Relationship} & Scatter Plot
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-scatter.png} \\
+    \hline
+    \textbf{Location} & Map
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-map.png} \\
+    \hline
+    \textbf{Change over Time} & Line Chart
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-line.png} \\
+    \hline
+    \textbf{Outliers} & Box Plot
+    & \includegraphics[width=0.1\linewidth]{Pictures/small-box.png} \\
+    \hline
+  \end{tabular}
+  \caption{Appropriate Chart Type for Different types of Messages}
+  \label{tab:chart-type}
+\end{table}
+
+\subsection{Designing the Visualization}
+
+Designing is a very important step in data visualization.
+The design should ensure quick cognitive processing of the visualization.
+The design should also be aesthetically pleasing.\\
+
+A few best practices for designing visualizations are:
+
+\begin{itemize}
+  \item \textbf{Avoid 3D Charts}:
+    3D charts are hard to read and understand.
+    They also distort the data by violating the
+    \textbf{Area Principle}.
+  \item \textbf{Avoid Legends}:
+    Legends are hard to read and understand.
+    It is better to label the data directly.
+  \item \textbf{Maintain High Contrast}:
+    The colors used in the visualization should have
+    high contrast. This makes the visualization easy to read.
+  \item \textbf{Annotate Data to highlight important points}:
+    Annotations help the audience understand the visualization.
+    They also help the audience focus on the important points.
+\end{itemize}
+
+\begin{figure}[hibt!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Pictures/area-principle.png}
+  \caption{Area Principle is violated in 3D Charts; avoid them}
+  \label{fig:area-principle}
+\end{figure}
+
+\begin{figure}[hibt!]
+  \centering
+  \begin{subfigure}[c]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{Pictures/pie-legend.png}
+      \caption{Pie Chart with Legend}
+      \label{fig:pie-legend}
+  \end{subfigure}
+  \begin{subfigure}[c]{0.35\linewidth}
+      \includegraphics[width=\linewidth]{Pictures/pie-label.jpg}
+      \caption{Pie Chart with Labels}
+      \label{fig:pie-label}
+  \end{subfigure}
+  \caption{Pie with Labels is easier to read than Pie with Legend}
+  \label{fig:pie-label-over-legend}
+\end{figure}
+
+\begin{figure}[hibt!]
+  \centering
+  \includegraphics[width=0.75\linewidth]{Pictures/pie-vs-bar.png}
+  \caption{Bar Charts are better than Pie Charts if
+  the number of categories is large}
+  \label{fig:pie-vs-bar}
+\end{figure}
+
+\section{Visualizing Data in Dashboards}
+
+\begin{definition}[Dashboard]
+  A dashboard is a visual display of the most important information
+  needed to achieve one or more objectives;
+  consolidated and arranged on a single screen, so the information
+  can be monitored at a glance.
+\end{definition}
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Pictures/dashboard.png}
+  \caption{Example Dashboard}
+  \label{fig:dashboard}
+\end{figure}
+
+
+\newpage
+
+\begin{remark}
+$f$ is convex $\Rightarrow$ $-f$ is concave.
+\end{remark}
+Level set: $S_{\alpha}f = \{ x | f(x) \le \alpha \}$.\\
+$S_{\alpha}f$ is convex $\Leftrightarrow$ $f$ is convex. \\
+\begin{definition}[Strongly convex]
+$f : C \rightarrow \R$ is strongly convex with modules $\mu$ if $\forall x, y \in C$, $\forall \alpha \in (0,1)$, $f(ax + (1-a)x) \le af(x) + (1-a)f(x) - \frac{1}{2\mu}\alpha(1- \alpha) \|x-y\|^2$.
+\end{definition}
+
+\begin{remark}
+\begin{itemize}
+\item $f$ is 2nd-differentiable, $f$ ix \cvx $\iff$ $\nabla^2f(x) \rangle  0$.
+\item $f$ is strongly \cvx $\iff$ $\nabla^2f(x) \rangle  \mu I$ $\iff$ $x \ge \mu$
+\end{itemize}
+\end{remark}
+\begin{definition}[2]
+$f : \R^n \to \bar{\R} $ is \cvx  if $x, y  \in \R , \alpha \in (0,1), f(ax + (1-a)x) \le af(x) + (1-a)f(x)$.
+\end{definition}
+The effective domain of $f$ is $dom f = \{x | f(x) \langle + \infty \}$
+\begin{example}[ludcator function]
+$\delta_c(x) = \begin{cases}
+0 \quad  x \in C \\
++ \infty \quad elsewhere
+\end{cases}$.\\
+$dom \space \delta_c(x) = C$
+\end{example}
+\begin{definition}[Epigraph]
+The epigraph of f is $epi \space f = \{(x,\alpha) | f(x) \le \alpha\}$
+\end{definition}
+The graph of $epi \space f$ is $\{ (x,f(x) | x \in dom \space f\}$.
+\begin{definition}[III]
+A function $f : \R^n \to \bar{\R}$ is %\cvx  if $\epi \space f $ is \cvx
+\end{definition}
+\begin{theorem}
+$f : \R^n \to \bar{\R}$ is \cvx  $\iff$ $\forall x,y \in \R^n, \alpha \in (0,1), f(ax + (1-a)x) \le af(x) + (1-a)f(x)$.
+\end{theorem}
+\begin{proof}
+$\Rightarrow$ take $x,y \in dom \space f$, $(x,f(x)) \in epi \space f$,$(y,f(y)) \in epi \space f$.
+\end{proof}
+
+\begin{example}[Distance]
+Distance to a \cvx  set $d_c(x) = \inf \{ \| z-x \| | z \in C \}$. Take any two sequence $\{ y_k\} and \{ \bar{y}_k\} \subset C$ s.t. $\| y_k - x\| \to d_c(x)$, $\| \bar{y}_k - \bar{x}\| \to d_c(\bar{x})$. $z_k = \alpha y_k + (1 - \alpha) \bar{y}_k$.
+\begin{align*}
+d_c(\alpha x + (1-\alpha) \bar{x}) &\le \| z_k - \alpha x - (1 - \alpha) \bar{x}\| \\
+& = \| \alpha(y_k - x) + (1 - \alpha)(\bar{y}_k - \bar{x})\| \\
+& \le \alpha \| y_k - x\| + (1 - \alpha ) \|\bar{y}_k - \bar{x}\|
+\end{align*}
+Take $k \to \infty$, $d_c(\alpha x + (1 - \alpha) \bar{x}) \le \alpha d(x) + (1 - \alpha) d(\bar{x})$
+\end{example}
+\begin{example}[Eigenvalues]
+Let $X \in S^n := \{ n \times n symmetric matrix\}$. $\lambda_1(x) \ge \lambda_2(X) \ge \ldots \ge \lambda_n(x)$.\\
+$f_k(x) = \sum_{1}^n \lambda_i(x)$.\\
+Equivalent characterization
+
+\begin{align*}
+f_k(x) & = \max\{ \sum_{i} v_i^T Xv_i | v_i \perp v_j , i \neq j\} \\
+& =  \max\{ tr( V^TXV | V^T V = I_k \} \\
+\max \{tr(VV^TX) \} \text{by circularity}
+\end{align*}
+Note $\langle A,B\rangle  = tr(A,B)$ is true for symmetric matrix. \\
+$\langle A,A\rangle  = |A |_F^2 = \sum_{i} A_{ii}^2$
+\end{example}
+
+\section{Support Function}
+Take a set $C \in \R^n$, not necessarily convex.The support function is $\sigma_C = \R^n \to \bar{\R}$. $\sigma_C(x) = \sum \{ \langle x,u\rangle  | u \in C\}$.
+\includegraphics[scale=0.5]{1_1.png}
+\begin{fact}
+The support function binds the supporting hyper-plane.
+\end{fact}
+
+Supporting functions are
+\begin{itemize}
+\item Positively homogeneous\\
+$\sigma_C(\alpha x) = \alpha \sigma_C(x) \forall \alpha \rangle  0$ \\
+$\sigma_C(\alpha x ) = \sup_{u \in C} \langle \alpha x, u\rangle  = \alpha \sup_{u \in C} \langle x, u\rangle  = \alpha \sigma_C(x)$
+\item Sub-linear( a special case of convex, linear combination holds $\forall \alpha$.\\
+$\sigma_C(\alpha x + (1 - \alpha) y ) = \sup_{u \in C} \langle \alpha x + (1 - \alpha) y,u\rangle  \le \alpha\sup_{u \in C}\langle x,u\rangle  + (1 - \alpha)\sup_{u \in C}\langle y,u\rangle  $
+\end{itemize}
+\begin{example}[L2-norm]
+$\| x \| = \sup_{u \in C} \{ \langle x, u \rangle, u \in \R^n \}$.\\
+$\|x \|_p = \sup \{ \langle x, u \rangle, u \in B_q \}$ where $\frac{1}{p} + \frac{1}{q} = 1$. $B_q = \{ \|x \|_q \le 1\}$.\\
+The norm is
+\begin{itemize}
+\item Positive homogeneous
+\item sub-linear
+\item If $0 \in C$, $\sigma_C$ is non-negative.
+\item If $C$ is central-symmetric, $\sigma_C(0) = 0$ and $\sigma_C(x) = \sigma_C(-x)$
+\end{itemize}
+\end{example}
+
+\begin{fact}[Epigraph of a support function]
+$epi \space \sigma_C = \{ (x,t) | \sigma_C(x) \le t\}$.
+Suppose $(x,t) \in epi \space \sigma_C$. Take any  $\alpha > 0$. $\alpha(x,t) = (\alpha x, \alpha t)$.\\
+$\alpha \sigma_C(x) = \alpha \sigma_C(x) \le \alpha t$. $\alpha(x,c) \in epi
+\sigma_C$\\
+\includegraphics[]{1_2}
+\end{fact}
+
+\section{Operations Preserve Convexity of Functions}
+\begin{itemize}
+\item Positive affine transformation \\
+$f_1,f_2,\ldots,f_k \in \space cvx \R^n$.\\
+$f = \alpha_1 f_1 + \alpha_2 f_2 + \ldots + \alpha_k f_k$
+\item Supremum of functions. Let $\{ f_i \}_{i \in I}$ be arbitrary family of functions. If $\exists x \sup_{j \in J} f_j(x) < \infty \Leftrightarrow f(x) = \sup_{j \in J} f_j(x) $\\
+\includegraphics[]{1_3}
+\item Composition with linear map.\\
+$f \in cvx \R^n$, $A:\R^n \to \R^m$ is a linear map.
+$f \circ A (x) = f(Ax) \in cvx \R^n$\\
+\begin{align*}
+f \circ A (x) & = f(A(\alpha x + (1-\alpha) y)) \\
+& = f(A \alpha x + (1-\alpha) A y) \\
+& \le \alpha f(Ax) + (a - \alpha) f(Ay)
+\end{align*}
+\end{itemize}
+
+\end{document}
